@@ -284,3 +284,7 @@ U
 :
 
 .gitignore,a/5/a5cc2925ca8258af241be7e5b0381edf30266302
+d
+4startbootstrap-clean-blog-jekyll-gh-pages/.gitignore,4/0/4035511d58de3374a6e168798a9e3dcefd7590a1
+;
+_config.yml,c/d/cd089ae45ce870c45e434019e8f1ed4f066cd425
