@@ -169,14 +169,14 @@ export class Leap {
                         <strong>No Flow Control :</strong> Évitez autant que possible les structures de contrôle de flux telles que les boucles <code>for</code> et <code>while</code>. Préférez les méthodes de programmation fonctionnelle telles que <code>map</code>, <code>filter</code> et <code>reduce</code>.
                     </li>
                 </ul>
-                <p>Réponse possible </p>
+                <h3 >example de solution</h3>
 <pre><code class="language-typescript">
 export class Leap {
     isLeapYear(year: number): boolean {
         return (year % 4 === 0 && (year % 100 !== 0 || year % 400 === 0));
     }
 }</code></pre>
-                <p>Paradigme fonctionnel</p>
+                <h3 >test avec paradigme fonctionnel</h3>
 <pre><code class="language-typescript">
 import { describe, expect, test } from 'vitest';
 import { isLeapYear } from './isLeapYear';
@@ -220,7 +220,7 @@ describe('Leap', () => {
 });
 
 </code></pre>
-                <p>Avec la fonction</p>
+                    <h3 >solution  fonctionnelle</h3>
                <pre><code class="language-typescript">
 export const isLeapYear = (number: number) =>
                    number % 4 === 0 &&
@@ -250,6 +250,13 @@ export const isLeapYear = (number: number) =>
                 <p>
                     En résumé, cette façon de coder est concise, claire et efficace, ce qui en fait un choix solide pour cette fonction relativement simple.
                 </p>
+
+
+                <h1 >Perspective qui pique</h1>
+                <h3>Si on demandait a ChatGpt</h3>
+                <p>propose moi du code fonctionnelle  typescript   no flow control en une ligne  avec les tests unitaires vitest du kata leap year </p>
+                <img src="assets/img/Sélection_217.png" alt="chatgpt" >
+
             </div>
         </div>
     </div>
@@ -262,10 +269,16 @@ export const isLeapYear = (number: number) =>
                 <ul class="list-inline text-center">
 
                     <li class="list-inline-item">
-                        <a href="#!">
+                        <a href="http://specialjcg.github.io">
                                     <span class="fa-stack fa-lg">
                                         <i class="fas fa-circle fa-stack-2x"></i>
                                         <i class="fab fa-github fa-stack-1x fa-inverse"></i>
+                                    </span>
+                        </a>
+                        <a href="http://linkedin.com/in/gouleaujeancharles/">
+                                    <span class="fa-stack fa-lg">
+                                        <i class="fas fa-circle fa-stack-2x"></i>
+                                        <i class="fab fa-linkedin fa-stack-1x fa-inverse"></i>
                                     </span>
                         </a>
                     </li>
