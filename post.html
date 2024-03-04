@@ -138,7 +138,7 @@ describe('Leap', () => {
 
                 <p><i class="fas fa-circle" style="color: red;"></i> Test Red</p>
 
-                <p>Approche naîve</p>
+                <p>Cette approche naïve utilise des conditions imbriquées pour vérifier si une année est bissextile, en vérifiant d'abord la divisibilité par 4, puis par 100, et enfin par 400.</p>
                 <pre><code class="language-typescript">
 export class Leap {
   isLeapYear(year: number): boolean {
@@ -226,6 +226,30 @@ export const isLeapYear = (number: number) =>
                    number % 4 === 0 &&
                    (number % 100 !== 0 || number % 400 === 0);
                </code> </pre>
+                <h2>Avantages de l'approche avec une expression lambda concise</h2>
+                <p>
+                    Cette fonction utilise une expression lambda concise pour déterminer si une année donnée est bissextile ou non. Voici les avantages de cette approche :
+                </p>
+                <ul>
+                    <li>
+                        <strong>Lisibilité améliorée :</strong> L'expression concise est facile à comprendre et à lire. Elle exprime clairement la logique derrière la détermination des années bissextiles.
+                    </li>
+                    <li>
+                        <strong>Moins de lignes de code :</strong> En utilisant une seule ligne de code, la fonction est plus concise et réduit la quantité de code à écrire et à maintenir.
+                    </li>
+                    <li>
+                        <strong>Performance potentielle améliorée :</strong> En réduisant le nombre de calculs et de conditions, cette fonction peut potentiellement être plus performante que des approches plus complexes, bien que dans ce cas, la différence soit négligeable.
+                    </li>
+                    <li>
+                        <strong>Maintenabilité accrue :</strong> La simplicité de l'expression rend la fonction plus facile à maintenir. Les futurs développeurs peuvent rapidement comprendre ce que fait la fonction sans avoir à déchiffrer des blocs de code plus longs.
+                    </li>
+                    <li>
+                        <strong>Compatibilité avec TypeScript :</strong> Cette approche est parfaitement compatible avec TypeScript, ce qui permet de tirer parti des avantages de ce langage, comme le typage statique pour une meilleure robustesse du code.
+                    </li>
+                </ul>
+                <p>
+                    En résumé, cette façon de coder est concise, claire et efficace, ce qui en fait un choix solide pour cette fonction relativement simple.
+                </p>
             </div>
         </div>
     </div>
