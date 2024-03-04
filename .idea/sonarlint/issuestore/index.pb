@@ -288,3 +288,32 @@ d
 4startbootstrap-clean-blog-jekyll-gh-pages/.gitignore,4/0/4035511d58de3374a6e168798a9e3dcefd7590a1
 ;
 _config.yml,c/d/cd089ae45ce870c45e434019e8f1ed4f066cd425
+=
+js/scripts.js,f/7/f72170cbc181b126d54f0901f21e6043dccd300f
+>
+css/styles.css,8/3/8321775d26c1b74276abda7aafa418d98009580c
+9
+	post.html,2/7/27ab422652129f8ef4890c7d39ce98230e568bc5
+<
+contact.html,1/4/143617604351c3b10191461458ec5e120a28597c
+:
+
+about.html,8/1/8143af03f594989ae71e2d1be57beadf78357d4c
+9
+	blog.adoc,9/2/9292dc103f1f7d9c35723a2c51bc7d0dad979636
+9
+	blog.html,3/4/34a304115008eb163915f4d200c10b6301f30e80
+7
+blog.md,b/d/bdc6fe95278a99f633b2dfee9ad23624388e8046
+4
+blog,1/6/169254c45fa4ed7ea11c00541ffb17b0cde39625
+;
+.prettierrc,2/0/20137a9e94744624390b6748bc96df5ca1579b71
+9
+	.eslintrc,4/b/4be5f5e3cea171c304090be92469b2f2cb51039a
+:
+
+post1.html,d/9/d964368ad7f740f5e899cd433f21dda1ffda8555
+:
+
+post2.html,1/b/1b0d28d82b8fc9349922cd85bd29acf308ce6205

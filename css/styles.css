@@ -123,6 +123,7 @@ h6, .h6, h5, .h5, h4, .h4, h3, .h3, h2, .h2, h1, .h1 {
 h1, .h1 {
   font-size: calc(1.375rem + 1.5vw);
 }
+
 @media (min-width: 1200px) {
   h1, .h1 {
     font-size: 2.5rem;
@@ -302,6 +303,45 @@ kbd kbd {
 figure {
   margin: 0 0 1rem;
 }
+/* Styles pour la coloration syntaxique du code TypeScript */
+.language-typescript {
+  font-family: 'Courier New', Courier, monospace;
+  background-color: #f4f4f4;
+  padding: 10px;
+  border-radius: 5px;
+  font-size: 0.8em !important;
+}
+
+.language-typescript code {
+  color: #333;
+}
+
+.language-typescript .keyword {
+  color: #007bff;
+}
+
+.language-typescript .comment {
+  color: #6c757d;
+}
+.profile-image {
+  left: 80%;
+  bottom:50px;
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
+  overflow: hidden;
+  margin: 20px;
+  display: inline-block;
+  position: absolute;
+}
+
+.profile-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* Example of positioning the images */
 
 img,
 svg {
