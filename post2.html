@@ -47,12 +47,12 @@
         <div class="row gx-4 gx-lg-5 justify-content-center">
             <div class="col-md-10 col-lg-8 col-xl-7">
                 <div class="post-heading">
-                    <h1>Kata Leap</h1>
-                    <h2 class="subheading">Ajoutons des contraintes</h2>
+                    <h1>Remove Duplicates from Sorted Array</h1>
+                    <h2 class="subheading">Essayons en Rust</h2>
                     <span class="meta">
                                 Posted by
                                 <a href="#!">SpecialJcg</a>
-                                03 mars 2024
+                                25 mars 2024
                             </span>
                 </div>
             </div>
@@ -64,168 +64,201 @@
     <div class="container px-4 px-lg-5">
         <div class="row gx-4 gx-lg-5 justify-content-center">
             <div class="col-md-10 col-lg-8 col-xl-7">
-                <p>Avant 1582, le calendrier julien considérait chaque année divisible par 4 comme une année bissextile.
-                    Cependant, au 16ème siècle, il est apparu que le calendrier avait dévié de l'année solaire d'environ
-                    10 jours. Le calendrier grégorien a été introduit pour corriger cela, en sautant certains jours du
-                    calendrier julien et en ajustant les règles des années bissextiles.
-                </p>
-                <p>L'objectif de l'utilisateur est de déterminer si une année est bissextile pour planifier un jour
-                    supplémentaire le 29 février lors de ces années spéciales.</p>
-
-                Critères d'acceptation:
-                <ul>
-                    <li>Toutes les années divisibles par 400 sont des années bissextiles (par exemple, 2000).</li>
-                    <li>Toutes les années divisibles par 100 mais pas par 400 ne sont pas des années bissextiles (par
-                        exemple, 1700, 1800, 1900, et 2100).
+                <h1>Suppression des doublons dans un tableau</h1>
+                <p>Étant donné un tableau d'entiers nums trié dans l'ordre croissant, supprimez les doublons sur place de manière à ce que chaque élément unique n'apparaisse qu'une seule fois. L'ordre relatif des éléments doit être conservé. Ensuite, retournez le nombre d'éléments uniques dans nums.</p>
+                <p>Considérez le nombre d'éléments uniques de nums comme k, pour être accepté, vous devez faire ce qui suit :</p>
+                <ol>
+                    <li>Modifiez le tableau nums de sorte que les k premiers éléments de nums contiennent les éléments uniques dans l'ordre où ils étaient présents initialement dans nums. Les éléments restants de nums ne sont pas importants, tout comme la taille de nums.</li>
+                    <li>Retournez k.</li>
+                </ol>
+                <ol>
+                    <li>L'idée principale est de parcourir le tableau et de garder une trace de la position où insérer le prochain élément unique. Pour cela, nous comparons chaque élément avec le précédent et ne conservons que les éléments uniques.</li>
+                    <li>Approche
+                        <ol>
+                            <li>Vérifier si le tableau est vide. Si c'est le cas, retourner 0 car il n'y a aucun élément unique.</li>
+                            <li>Initialiser un indice k à 1, représentant la position où insérer le prochain élément unique. Nous commençons à 1 car le premier élément est déjà considéré comme unique.</li>
+                            <li>Parcourir le tableau à partir de l'indice 1.</li>
+                            <li>Pour chaque élément, comparer avec l'élément précédent (à l'indice k - 1). Si l'élément est différent, cela signifie qu'il est unique et doit être conservé.</li>
+                            <li>Si l'élément est unique, le placer à la position k et incrémenter k pour pointer vers la prochaine position pour un élément unique.</li>
+                            <li>À la fin de la boucle, k représente le nombre d'éléments uniques dans le tableau.</li>
+                        </ol>
                     </li>
-                    <li>Toutes les années divisibles par 4 mais pas par 100 sont des années bissextiles (par exemple,
-                        2008, 2012, 2016).
+                    <li>Complexité
+                        <ul>
+                            <li>Complexité temporelle : O(n) où n est la taille du tableau. Nous devons parcourir le tableau une fois.</li>
+                            <li>Complexité spatiale : O(1) car nous modifions le tableau en place sans utiliser de mémoire supplémentaire en dehors de quelques variables de comptage.</li>
+                        </ul>
                     </li>
-                    <li>Toutes les années qui ne sont pas divisibles par 4 ne sont pas des années bissextiles (par
-                        exemple, 2017, 2018, 2019).
-                    </li>
-                </ul>
-                <h3 id="1er-test">tests</h3>
-                <pre><code class="language-typescript">
-import { beforeEach, describe, expect, test } from "vitest";
-import { Leap } from './leap';
+                </ol>
 
-describe('Leap', () => {
-  let leap: Leap;
 
-  beforeEach(() => {
-    leap = new Leap();
-  });
+                <h3 id="1er-test">Test</h3>
+                <div><p>Ces tests vérifient différents cas :</p>
 
-  test('Année non divisible par 4 dans une année commune', () => {
-    expect(leap.isLeapYear(2015)).toBe(false);
-  });
+                    <ol>
+                        <li>Un cas où le vecteur est vide.</li>
+                        <li>Un cas où aucun doublon n'existe.</li>
+                        <li>Un cas où des doublons existent.</li>
+                        <li>Un cas où tous les éléments sont des doublons.</li>
+                    </ol>
 
-  test('Année divisible par 2 mais pas divisible par 4 dans une année commune', () => {
-    expect(leap.isLeapYear(1970)).toBe(false);
-  });
+                </div>
+                <h4>Test avec un tableau vide (test_remove_duplicates_empty) :</h4>
+                <pre><code class="language-rust">
+#[cfg(test)]
+mod tests{
+    #[test]
+    fn test_remove_duplicates_empty(){
+        let nums:Vec<i32> =vec![];
+        assert_eq!(remove_duplicates(&nums),0);
+    }
 
-  test('Année divisible par 4 mais pas divisible par 100 dans une année bissextile', () => {
-    expect(leap.isLeapYear(1996)).toBe(true);
-  });
-
-  test('Année divisible par 4 et par 5 dans une année bissextile', () => {
-    expect(leap.isLeapYear(1960)).toBe(true);
-  });
-
-  test('Année divisible par 100 mais pas divisible par 400 dans une année commune', () => {
-    expect(leap.isLeapYear(2100)).toBe(false);
-  });
-
-  test("Année divisible par 100 mais pas divisible par 3 n'est pas une année bissextile", () => {
-    expect(leap.isLeapYear(1900)).toBe(false);
-  });
-
-  test('Année divisible par 400 dans une année bissextile', () => {
-    expect(leap.isLeapYear(2000)).toBe(true);
-  });
-
-  test('Année divisible par 400 mais pas divisible par 125 est une année bissextile', () => {
-    expect(leap.isLeapYear(2400)).toBe(true);
-  });
-
-  test('Année divisible par 200 mais pas divisible par 400 dans une année commune', () => {
-    expect(leap.isLeapYear(1800)).toBe(false);
-  });
-});
-
-</code></pre>
-
-                <p><i class="fas fa-circle" style="color: red;"></i> Test Red</p>
-
-                <p>Approche naîve</p>
-                <pre><code class="language-typescript">
-export class Leap {
-  isLeapYear(year: number): boolean {
-    if (year % 4 === 0) {
-      if (year % 100 !== 0) {
-        return true;
-      } else {
-        if (year % 400 === 0) {
-          return true;
+    fn remove_duplicates(list_num: &Vec<i32>) -> i32 {
+        if list_num.is_empty() {
+            return 0;
         }
-      }
+       return 1;
     }
-    return false;
-  }
 }
-</code></pre>
 
-                <p><i class="fas fa-circle" style="color: green;"></i> Test Green</p>
-                <h3 id="2eme-test">Contrainte</h3>
-                <ul>
-                    <li>
-                        <strong>Immutabilité :</strong> Vous devez utiliser des structures de données immuables dans votre implémentation.
-                    </li>
-                    <li>
-                        <strong>Primitive Obsession :</strong> Vous devez éviter d'utiliser des types primitifs et préférer les types d'objet.
-                    </li>
-                    <li>
-                        <strong>No Flow Control :</strong> Évitez autant que possible les structures de contrôle de flux telles que les boucles <code>for</code> et <code>while</code>. Préférez les méthodes de programmation fonctionnelle telles que <code>map</code>, <code>filter</code> et <code>reduce</code>.
-                    </li>
-                </ul>
-                <p>Réponse possible </p>
-<pre><code class="language-typescript">
-export class Leap {
-    isLeapYear(year: number): boolean {
-        return (year % 4 === 0 && (year % 100 !== 0 || year % 400 === 0));
+        </code></pre>
+
+                <p><i class="fas fa-circle" style="color: green;"></i> Dans ce test, le tableau est vide, donc la fonction doit simplement retourner 0, indiquant qu'il n'y a aucun élément unique dans le tableau. </p>
+
+                <h4>Test sans doublons (test_remove_duplicates_no_duplicates) :</h4>
+
+                <pre><code class="language-rust">
+#[cfg(test)]
+mod tests{
+    #[test]
+    fn test_remove_duplicates_empty(){
+        let nums:Vec<i32> =vec![];
+        assert_eq!(remove_duplicates(&nums),0);
     }
-}</code></pre>
-                <p>Paradigme fonctionnel</p>
-<pre><code class="language-typescript">
-import { describe, expect, test } from 'vitest';
-import { isLeapYear } from './isLeapYear';
+    #[test]
+    fn test_remove_duplicates_no_duplicates() {
+        let mut nums = vec![1, 2, 3, 4, 5];
+        assert_eq!(remove_duplicates(&mut nums), 5);
+        assert_eq!(nums, vec![1, 2, 3, 4, 5]);
+    }
 
-describe('Leap', () => {
-  test('Année non divisible par 4 dans une année commune', () => {
-    expect(isLeapYear(2015)).toBe(false);
-  });
 
-  test('Année divisible par 2 mais pas divisible par 4 dans une année commune', () => {
-    expect(isLeapYear(1970)).toBe(false);
-  });
-
-  test('Année divisible par 4 mais pas divisible par 100 dans une année bissextile', () => {
-    expect(isLeapYear(1996)).toBe(true);
-  });
-
-  test('Année divisible par 4 et par 5 dans une année bissextile', () => {
-    expect(isLeapYear(1960)).toBe(true);
-  });
-
-  test('Année divisible par 100 mais pas divisible par 400 dans une année commune', () => {
-    expect(isLeapYear(2100)).toBe(false);
-  });
-
-  test("Année divisible par 100 mais pas divisible par 3 n'est pas une année bissextile", () => {
-    expect(isLeapYear(1900)).toBe(false);
-  });
-
-  test('Année divisible par 400 dans une année bissextile', () => {
-    expect(isLeapYear(2000)).toBe(true);
-  });
-
-  test('Année divisible par 400 mais pas divisible par 125 est une année bissextile', () => {
-    expect(isLeapYear(2400)).toBe(true);
-  });
-
-  test('Année divisible par 200 mais pas divisible par 400 dans une année commune', () => {
-    expect(isLeapYear(1800)).toBe(false);
-  });
-});
+    fn remove_duplicates(list_num: &Vec<i32>) -> i32 {
+        if list_num.is_empty() {
+            return 0;
+        }
+        list_num.len() as i32
+    }
+}
 
 </code></pre>
-                <p>Avec la fonction</p>
-               <pre><code class="language-typescript">
-export const isLeapYear = (number: number) =>
-                   number % 4 === 0 &&
-                   (number % 100 !== 0 || number % 400 === 0);
-               </code> </pre>
+                <p><i class="fas fa-circle" style="color: green;"></i> Dans ce test, le tableau ne contient aucun doublon. La fonction doit parcourir le tableau, constater qu'aucun élément n'est répété, et donc tous les éléments sont considérés comme uniques. Le nombre d'éléments uniques devrait être égal à la longueur du tableau (dans ce cas, 5). Le tableau lui-même ne doit pas être modifié car aucun élément n'a été retiré.</p>
+                <h4>Test avec des doublons (test_remove_duplicates_duplicates_exist) :</h4>
+
+                <pre><code class="language-rust">
+#[cfg(test)]
+mod tests{
+    #[test]
+    fn test_remove_duplicates_empty(){
+        let nums:Vec<i32> =vec![];
+        assert_eq!(remove_duplicates(&nums),0);
+    }
+    #[test]
+    fn test_remove_duplicates_no_duplicates() {
+        let mut nums = vec![1, 2, 3, 4, 5];
+        assert_eq!(remove_duplicates(&mut nums), 5);
+        assert_eq!(nums, vec![1, 2, 3, 4, 5]);
+    }
+    #[test]
+    fn test_remove_duplicates_duplicates_exist() {
+        let mut nums = vec![1, 1, 2, 2, 3, 4, 5, 5, 6];
+        assert_eq!(remove_duplicates(&mut nums), 6);
+        assert_eq!(nums, vec![1, 2, 3, 4, 5, 6]);
+    }
+
+     fn remove_duplicates(list_num: &mut Vec<i32>) -> i32 {
+        if list_num.is_empty() {
+            return 0;
+        }
+        let mut k = 1;
+        let len_list=   list_num.len();
+        for i in 1..len_list {
+            if list_num[i] != list_num[k - 1] {
+                list_num[k] = list_num[i];
+                k += 1;
+            }
+        }
+        list_num.drain(k..=len_list-1);
+        k as i32
+    }
+}
+
+</code></pre>
+                <p><i class="fas fa-circle" style="color: green;"></i>
+                    Ce test vérifie le cas où des doublons existent dans le tableau. La fonction doit parcourir le tableau et éliminer les doublons, ne conservant qu'une seule occurrence de chaque élément. Le nombre d'éléments uniques devrait être égal au nombre de différentes valeurs présentes dans le tableau, dans ce cas, 6. Le tableau doit être modifié pour ne contenir que les éléments uniques dans le même ordre relatif qu'ils apparaissent initialement.                </p>
+                <h4>Test avec que des doublons (test_remove_duplicates_all_duplicates) :</h4>
+
+                <pre><code class="language-rust">
+#[cfg(test)]
+mod tests{
+    #[test]
+    fn test_remove_duplicates_empty(){
+        let nums:Vec<i32> =vec![];
+        assert_eq!(remove_duplicates(&nums),0);
+    }
+    #[test]
+    fn test_remove_duplicates_no_duplicates() {
+        let mut nums = vec![1, 2, 3, 4, 5];
+        assert_eq!(remove_duplicates(&mut nums), 5);
+        assert_eq!(nums, vec![1, 2, 3, 4, 5]);
+    }
+    #[test]
+    fn test_remove_duplicates_duplicates_exist() {
+        let mut nums = vec![1, 1, 2, 2, 3, 4, 5, 5, 6];
+        assert_eq!(remove_duplicates(&mut nums), 6);
+        assert_eq!(nums, vec![1, 2, 3, 4, 5, 6]);
+    }
+    #[test]
+    fn test_remove_duplicates_all_duplicates() {
+        let mut nums = vec![1, 1, 1, 1, 1];
+        assert_eq!(remove_duplicates(&mut nums), 1);
+        assert_eq!(nums, vec![1]);
+    }
+     fn remove_duplicates(list_num: &mut Vec<i32>) -> i32 {
+        if list_num.is_empty() {
+            return 0;
+        }
+        let mut k = 1;
+        let len_list=   list_num.len();
+        for i in 1..len_list {
+            if list_num[i] != list_num[k - 1] {
+                list_num[k] = list_num[i];
+                k += 1;
+            }
+        }
+        list_num.drain(k..=len_list-1);
+        k as i32
+    }
+}
+
+</code></pre>
+                <p><i class="fas fa-circle" style="color: green;"></i>
+                    Dans ce test, tous les éléments du tableau sont des doublons. La fonction devrait donc les éliminer et retourner que 1 élément unique, puisque le premier élément est conservé.
+                </p>
+                <ol>
+                    <li>
+                        Cette fonction commence par vérifier si le vecteur est vide, auquel cas elle retourne simplement 0 car il n'y a aucun élément unique à retirer. Ensuite, elle initialise un indice k à 1 et parcourt le vecteur à partir de l'indice 1 jusqu'à la fin. Pour chaque élément, elle le compare avec l'élément précédent conservé (à l'indice k - 1). Si l'élément est différent, elle le conserve et incrémente k pour pointer vers la prochaine position pour un élément unique. À la fin de la boucle, k représente le nombre d'éléments uniques dans le vecteur.
+                    </li>
+                    <li>
+                        Ensuite, la fonction utilise la méthode drain() pour retirer les éléments en excès du vecteur à partir de l'indice k, car ils sont considérés comme des doublons. Enfin, elle retourne k converti en entier signé, qui représente le nombre d'éléments uniques restants dans le vecteur après la suppression des doublons.
+                    </li>
+                    <li>
+                        Cette implémentation est concise, efficace et respecte les exigences du problème. Elle garantit que le vecteur est modifié en place et que l'ordre relatif des éléments est préservé. En conclusion, le code final de la fonction remove_duplicates offre une solution élégante et fonctionnelle pour la suppression des doublons dans un vecteur en Rust.
+                    </li>
+                </ol>
+
+
+
             </div>
         </div>
     </div>
@@ -238,10 +271,16 @@ export const isLeapYear = (number: number) =>
                 <ul class="list-inline text-center">
 
                     <li class="list-inline-item">
-                        <a href="#!">
+                        <a href="https://github.com/specialjcg/">
                                     <span class="fa-stack fa-lg">
                                         <i class="fas fa-circle fa-stack-2x"></i>
                                         <i class="fab fa-github fa-stack-1x fa-inverse"></i>
+                                    </span>
+                        </a>
+                        <a href="http://linkedin.com/in/gouleaujeancharles/">
+                                    <span class="fa-stack fa-lg">
+                                        <i class="fas fa-circle fa-stack-2x"></i>
+                                        <i class="fab fa-linkedin fa-stack-1x fa-inverse"></i>
                                     </span>
                         </a>
                     </li>
